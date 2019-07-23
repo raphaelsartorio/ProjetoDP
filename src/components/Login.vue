@@ -102,19 +102,21 @@
 			</div><!-- /.row -->
 		</div><!-- /.main-content -->
 		<div v-if="autenticacao === true">
-			<topo />
-			<button @click="autenticacao = false">LOGOUT</button>
+			<topo v-on:sair="logout"> </topo>
+			<lateral></lateral>
 		</div>
 	</div><!-- /.main-container -->
 </template>
 
 <script>
 import topo from './topo'
+import lateral from './lateral'
 
   export default {
 	name: 'Login',
 	components:{
 		topo,
+		lateral,
 	},
 
     data: function () {
@@ -140,6 +142,9 @@ import topo from './topo'
 			})
 			.then(response => console.log('chegou'))
 			.catch(error => console.log('falhou'))
+		},
+		logout () {
+			this.autenticacao = false
 		}
 	}
   }
